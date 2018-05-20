@@ -46,7 +46,8 @@ for file in glob.glob(out_path + '/*/tweets.json'):
 	p = os.path.abspath(file)
 	d = os.path.dirname(p)
 	# TODO: make this system indendent
-	user = d.split('\\')[-1] # GD windows file system
+	split_on = '\\' if sys.platform == 'win32' else '/'
+	user = d.split(split_on)[-1] # GD windows file system
 
 	with open(p, 'r') as f:
 		tweets = json.load(f)
